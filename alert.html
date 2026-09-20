@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Resource Alert</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef2f7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification {
+            width: 420px;
+            background: white;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            border-left: 6px solid #e53935;
+        }
+
+        .notification h2 {
+            margin-top: 0;
+        }
+
+        .problem {
+            color: #c62828;
+            font-weight: bold;
+        }
+
+        .details {
+            background: #f5f7fa;
+            padding: 14px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .risk {
+            background: #fff4e5;
+            padding: 14px;
+            border-radius: 8px;
+            margin-bottom: 18px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="notification">
+
+        <h2>🚨 Cloud Resource Alert</h2>
+
+        <p class="problem">
+            Over-Provisioned Storage Detected
+        </p>
+
+        <div class="details">
+            <b>Resource:</b> Storage-001<br><br>
+            <b>Allocated:</b> 1000 GB<br>
+            <b>Used:</b> 100 GB<br>
+            <b>Utilization:</b> 10%
+        </div>
+
+        <div class="risk">
+            <b>⚠️ Risk</b>
+            <p>
+                Low utilization may result in inefficient
+                allocation of cloud storage capacity.
+            </p>
+        </div>
+
+        <p>
+            <b>Reason:</b>
+            A large amount of storage is allocated,
+            but only a small portion is being used.
+        </p>
+
+        <button onclick="openWebsite()">
+            OK — Open Monitoring Platform
+        </button>
+
+    </div>
+
+    <script>
+        function openWebsite() {
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>
