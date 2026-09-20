@@ -518,7 +518,138 @@
         }
 
     </script>
+<!-- STORAGE PROBLEM & REMEDIATION -->
 
+<section style="
+    margin:40px auto;
+    max-width:900px;
+    padding:30px;
+    background:#ffffff;
+    border-radius:16px;
+    box-shadow:0 6px 25px rgba(0,0,0,0.12);
+    font-family:Arial,sans-serif;
+">
+
+    <h2 style="color:#c62828;">
+        🚨 Storage Problem Detected
+    </h2>
+
+    <div style="
+        background:#f5f7fa;
+        padding:20px;
+        border-radius:10px;
+        margin:20px 0;
+    ">
+        <h3>Resource Details</h3>
+
+        <p><b>Resource:</b> VM-004</p>
+        <p><b>Allocated Storage:</b> 1000 GB</p>
+        <p><b>Used Storage:</b> 100 GB</p>
+        <p><b>Utilization:</b> 10%</p>
+    </div>
+
+    <div style="
+        background:#fff4e5;
+        padding:20px;
+        border-radius:10px;
+        margin:20px 0;
+    ">
+        <h3>⚠️ Risk</h3>
+
+        <p>
+            Very low storage utilization may result in
+            inefficient allocation of cloud storage capacity.
+        </p>
+    </div>
+
+    <div style="
+        background:#eef6ff;
+        padding:20px;
+        border-radius:10px;
+        margin:20px 0;
+    ">
+        <h3>🔎 Reason</h3>
+
+        <p>
+            A large amount of storage is allocated,
+            but only a small portion is being used.
+        </p>
+    </div>
+
+    <div style="
+        background:#eefbea;
+        padding:20px;
+        border-radius:10px;
+        margin:20px 0;
+    ">
+        <h3>💡 Recommendation</h3>
+
+        <p>
+            Reduce or optimize the allocated storage
+            after user approval.
+        </p>
+    </div>
+
+    <div style="text-align:center; margin-top:25px;">
+
+        <button onclick="optimizeStorage()" style="
+            padding:14px 25px;
+            border:none;
+            border-radius:8px;
+            background:#2563eb;
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+        ">
+            👤 Approve & Optimize
+        </button>
+
+    </div>
+
+    <div id="verificationMessage"
+         style="
+            display:none;
+            margin-top:25px;
+            padding:20px;
+            background:#e8f5e9;
+            border-radius:10px;
+            text-align:center;
+         ">
+
+        <h3>⚙️ Optimization Completed</h3>
+
+        <p>
+            Storage allocation has been optimized.
+        </p>
+
+        <p>
+            🔍 Verifying resource status...
+        </p>
+
+        <h3 id="resolvedText"></h3>
+
+    </div>
+
+</section>
+
+<script>
+
+function optimizeStorage() {
+
+    const message = document.getElementById("verificationMessage");
+
+    message.style.display = "block";
+
+    setTimeout(function() {
+
+        document.getElementById("resolvedText").innerHTML =
+            "✅ Problem Resolved";
+
+    }, 2000);
+}
+
+</script>
 </body>
 
 </html>
