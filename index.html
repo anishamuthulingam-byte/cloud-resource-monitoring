@@ -212,7 +212,109 @@
         Cloud Resource Monitoring & Automated Remediation
 
     </footer>
+<!-- CLOUD RESOURCE ALERT POPUP -->
 
+<div id="cloudAlert" style="
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+">
+
+    <div style="
+        background:white;
+        width:90%;
+        max-width:520px;
+        padding:30px;
+        border-radius:18px;
+        text-align:center;
+        box-shadow:0 10px 40px rgba(0,0,0,0.35);
+        font-family:Arial,sans-serif;
+    ">
+
+        <div style="font-size:45px;">🚨</div>
+
+        <h2>Cloud Resource Alert</h2>
+
+        <h3 style="color:#c62828;">
+            Over-Provisioned Storage Detected
+        </h3>
+
+        <p><b>Resource:</b> Storage-001</p>
+
+        <p><b>Allocated:</b> 1000 GB</p>
+
+        <p><b>Used:</b> 100 GB</p>
+
+        <p><b>Utilization:</b> 10%</p>
+
+        <div style="
+            background:#f4f7fb;
+            padding:15px;
+            border-radius:10px;
+            text-align:left;
+            margin-top:15px;
+        ">
+
+            <b>Why are you receiving this alert?</b>
+
+            <p>
+                A large amount of storage is allocated,
+                but only a small portion is being used.
+            </p>
+
+        </div>
+
+        <div style="
+            background:#eef7ee;
+            padding:15px;
+            border-radius:10px;
+            text-align:left;
+            margin-top:12px;
+        ">
+
+            <b>💡 Recommended Action</b>
+
+            <p>
+                Optimize the storage allocation
+                after user approval.
+            </p>
+
+        </div>
+
+        <button onclick="openDashboard()" style="
+            margin-top:20px;
+            padding:12px 35px;
+            border:none;
+            border-radius:8px;
+            background:#2563eb;
+            color:white;
+            font-size:16px;
+            font-weight:bold;
+            cursor:pointer;
+        ">
+            OK
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+
+function openDashboard() {
+
+    window.location.href = "dashboard.html";
+
+}
+
+</script>
 </body>
 
 </html>
