@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cloud Monitoring Dashboard</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            color: #1f2937;
+        }
+
+        .navbar {
+            background: #111827;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #667085;
+            margin-bottom: 30px;
+        }
+
+        .monitoring {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 25px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .number {
+            font-size: 36px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #111827;
+            color: white;
+            padding: 13px;
+        }
+
+        td {
+            padding: 13px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .normal {
+            color: #16803c;
+            font-weight: bold;
+        }
+
+        .problem {
+            color: #c62828;
+            font-weight: bold;
+        }
+
+        .issue {
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 15px;
+            background: #fafafa;
+        }
+
+        .button {
+            display: inline-block;
+            border: none;
+            padding: 11px 20px;
+            margin: 6px 5px 0 0;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .fix {
+            background: #2563eb;
+            color: white;
+        }
+
+        .ignore {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .result {
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        .back {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            background: #111827;
+            color: white;
+            padding: 20px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+    <div class="navbar">
+
+        <div>
+            ☁️ <b>Cloud Resource Monitoring</b>
+        </div>
+
+        <a href="index.html">Home</a>
+
+    </div>
+
+
+    <div class="container">
+
+        <a class="back" href="index.html">
+            ← Back to Home
+        </a>
+
+
+        <h1>📊 Cloud Resource Dashboard</h1>
+
+        <div class="subtitle">
+            Monitor → Detect → Alert → Remediate → Verify
+        </div>
+
+
+        <div class="monitoring">
+            🟢 <b>Monitoring System Active</b>
+            <br>
+            <small>Cloud resources are being monitored.</small>
+        </div>
+
+
+        <!-- SUMMARY -->
+
+        <div class="cards">
+
+            <div class="card">
+                <h3>Total Resources</h3>
+                <div class="number" id="total">5</div>
+            </div>
+
+            <div class="card">
+                <h3>Healthy Resources</h3>
+                <div class="number" id="healthy">2</div>
+            </div>
+
+            <div class="card">
+                <h3>Idle VMs</h3>
+                <div class="number" id="idle">1</div>
+            </div>
+
+            <div class="card">
+                <h3>Storage Issues</h3>
+                <div class="number" id="storage">2</div>
+            </div>
+
+        </div>
+
+
+        <!-- RESOURCE TABLE -->
+
+        <div class="section">
+
+            <h2>🖥️ Resource Status</h2>
+
+            <table>
+
+                <tr>
+                    <th>Resource</th>
+                    <th>Type</th>
+                    <th>CPU Usage</th>
+                    <th>Status</th>
+                </tr>
+
+                <tr>
+                    <td>VM-001</td>
+                    <td>Virtual Machine</td>
+                    <td>75%</td>
+                    <td class="normal">✅ Normal</td>
+                </tr>
+
+                <tr id="vm002">
+                    <td>VM-002</td>
+                    <td>Virtual Machine</td>
+                    <td>8%</td>
+                    <td class="problem">🚨 Idle VM</td>
+                </tr>
+
+                <tr>
+                    <td>VM-003</td>
+                    <td>Virtual Machine</td>
+                    <td>65%</td>
+                    <td class="normal">✅ Normal</td>
+                </tr>
+
+                <tr>
+                    <td>Storage-001</td>
+                    <td>Storage</td>
+                    <td>—</td>
+                    <td class="problem">⚠️ Over-Provisioned</td>
+                </tr>
+
+                <tr>
+                    <td>Storage-002</td>
+                    <td>Storage</td>
+                    <td>—</td>
+                    <td class="problem">⚠️ Over-Provisioned</td>
+                </tr>
+
+            </table>
+
+        </div>
+
+
+        <!-- PROBLEMS -->
+
+        <div class="section">
+
+            <h2>🚨 Detected Problems</h2>
+
+
+            <div class="issue" id="idleIssue">
+
+                <h3>🚨 Idle VM Detected</h3>
+
+                <p><b>Resource:</b> VM-002</p>
+
+                <p><b>CPU Usage:</b> 8%</p>
+
+                <p>
+                    The VM has very low utilization while remaining active.
+                </p>
+
+                <p>
+                    <b>Recommended action:</b>
+                    Stop the VM after user approval.
+                </p>
+
+                <button
+                    class="button fix"
+                    onclick="fixVM()">
+
+                    YES, FIX IT
+
+                </button>
+
+                <button
+                    class="button ignore"
+                    onclick="ignoreVM()">
+
+                    IGNORE
+
+                </button>
+
+                <div
+                    class="result"
+                    id="vmResult">
+                </div>
+
+            </div>
+
+
+            <div class="issue" id="storageIssue">
+
+                <h3>⚠️ Over-Provisioned Storage</h3>
+
+                <p><b>Resource:</b> Storage-001</p>
+
+                <p>
+                    Allocated: 1000 GB
+                </p>
+
+                <p>
+                    Used: 100 GB
+                </p>
+
+                <p>
+                    <b>Recommended action:</b>
+                    Optimize storage allocation.
+                </p>
+
+                <button
+                    class="button fix"
+                    onclick="optimizeStorage()">
+
+                    YES, OPTIMIZE
+
+                </button>
+
+                <button
+                    class="button ignore"
+                    onclick="ignoreStorage()">
+
+                    IGNORE
+
+                </button>
+
+                <div
+                    class="result"
+                    id="storageResult">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WORKFLOW -->
+
+        <div class="section">
+
+            <h2>🔄 System Workflow</h2>
+
+            <p>
+                ☁️ Monitor Resources
+            </p>
+
+            <p>
+                ↓
+            </p>
+
+            <p>
+                🔍 Detect Inefficiency
+            </p>
+
+            <p>
+                ↓
+            </p>
+
+            <p>
+                🚨 Generate Alert
+            </p>
+
+            <p>
+                ↓
+            </p>
+
+            <p>
+                👤 User Approval
+            </p>
+
+            <p>
+                ↓
+            </p>
+
+            <p>
+                ⚙️ Remediation
+            </p>
+
+            <p>
+                ↓
+            </p>
+
+            <p>
+                🔍 Verify Result
+            </p>
+
+            <p>
+                ↓
+            </p>
+
+            <p>
+                ✅ Problem Resolved
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <footer>
+
+        Cloud Resource Monitoring & Automated Remediation System
+
+    </footer>
+
+
+    <script>
+
+        function fixVM() {
+
+            const result =
+                document.getElementById("vmResult");
+
+            result.innerHTML =
+                "🔄 Remediation in progress...";
+
+            setTimeout(function() {
+
+                result.innerHTML =
+                    "✅ VM-002 has been successfully remediated and verified.";
+
+                document.getElementById("idle").innerText = "0";
+
+                document.getElementById("healthy").innerText = "3";
+
+                document.querySelector("#vm002 td:last-child").innerHTML =
+                    "✅ Remediated";
+
+                document.querySelector("#vm002 td:last-child").className =
+                    "normal";
+
+            }, 1500);
+
+        }
+
+
+        function ignoreVM() {
+
+            document.getElementById("vmResult").innerHTML =
+                "ℹ️ User chose to ignore this issue.";
+
+        }
+
+
+        function optimizeStorage() {
+
+            const result =
+                document.getElementById("storageResult");
+
+            result.innerHTML =
+                "🔄 Optimizing storage...";
+
+            setTimeout(function() {
+
+                result.innerHTML =
+                    "✅ Storage optimization completed and verified.";
+
+                document.getElementById("storage").innerText = "1";
+
+            }, 1500);
+
+        }
+
+
+        function ignoreStorage() {
+
+            document.getElementById("storageResult").innerHTML =
+                "ℹ️ User chose to ignore this issue.";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
